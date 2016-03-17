@@ -6,7 +6,8 @@
  * Description: Learning Management System.
  * Version: 0.0.2
  */
-include plugin_dir_path(__FILE__) . '/wp-include/library.php';
+
+include plugin_dir_path(__FILE__) . 'wp-include/library.php';
 
 
 add_action( 'admin_init', function() {
@@ -40,3 +41,10 @@ add_action('admin_menu', function () {
     );
 } );
 
+
+add_action('wp_head', function() {
+    echo option('lms', 'html_head', false);
+});
+add_action('wp_footer', function() {
+    echo option('lms', 'html_bottom', false);
+});
