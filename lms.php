@@ -10,6 +10,13 @@
 include plugin_dir_path(__FILE__) . 'wp-include/library.php';
 
 
+
+function lms_init() {
+    load_plugin_textdomain( 'lms', FALSE, basename( dirname( __FILE__ ) ) );
+}
+add_action( 'plugins_loaded', 'lms_init' );
+
+
 add_action( 'admin_init', function() {
     register_setting( 'lms', 'lms' );
 });
@@ -23,8 +30,8 @@ add_action( 'wp_before_admin_bar_render', function () {
 });
 add_action('admin_menu', function () {
     add_menu_page(
-        'LMS Index',
-        'LMS 0.0.1',
+        __('LMS Index', 'lms'),
+        __('LMS 0.0.1', 'lms'),
         'manage_options',
         'lms/index.php',
         '',
@@ -33,8 +40,8 @@ add_action('admin_menu', function () {
     );
     add_submenu_page(
         'lms/index.php',
-        'LMS Settings',
-        'Settings',
+        __('LMS Settings', 'lms'),
+        __('Settings', 'lms'),
         'manage_options',
         'lms/setting.php',
         ''
