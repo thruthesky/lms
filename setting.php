@@ -59,18 +59,22 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                     $src = $options[$option_name];
                     ?>
                     <input type="hidden" type="text" name="<?php echo $name?>" value="<?php echo $src?>">
-                    <div>
+                    <div class="logo">
                         <div class="upload-button">
                             <div class="photo">
-                                <img src="<?php echo $src?>"/></div>
-                            <div class="button">
+                                <img src="<?php echo $src?>"/>
+                            </div>
+                            <div class="button logo-button">
                                 Upload LOGO ( width: 400px, height: 200px )
+                            </div>
+                            <div class="button delete-button">
+                                Delete
                             </div>
                         </div>
                     </div>
                     <script>
                         jQuery(document).ready(function($) {
-                            $('.upload-button').click(function(e) {
+                            $('.upload-button .photo, .logo-button').click(function(e) {
                                 e.preventDefault();
                                 var custom_uploader = wp.media({
                                         title: 'Choose Logo',
@@ -85,6 +89,11 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                                         $('.photo img').attr('src', attachment.url);
                                     })
                                     .open();
+                            });
+                            $('.delete-button').click(function(e) {
+                                e.preventDefault();
+                                $('.logo .photo img').prop('src', '');
+                                $('[name="<?php echo $name?>"]').val('');
                             });
                         });
                     </script>
