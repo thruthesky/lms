@@ -8,8 +8,11 @@
  */
 
 if ( ! defined('ABC_LIBRARY') ) {
-    echo "Activate ABC-Library";
+    echo "LMS: Activate ABC-Library";
     return;
+}
+else {
+    dog('lms');
 }
 /**
  * Defines
