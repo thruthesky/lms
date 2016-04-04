@@ -29,17 +29,39 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
 
     <form method="post" action="options.php">
         <?php settings_fields( 'lms' ); ?>
-        <?php $options = get_option( 'lms' ); ?>
+
 
         <table class="form-table">
+
             <tr valign="top">
                 <th scope="row">
                     Company Name
                 </th>
                 <td>
-                    <input type='text' name="lms[company_name]" value='<?php option('lms', 'company_name') ?>' />
+                    <input type='text' name="lms[company_name]" value='<?php opt('lms[company_name]') ?>' />
                 </td>
             </tr>
+
+            <tr valign="top">
+                <th scope="row">
+                    Company Domain
+                </th>
+                <td>
+                    <input type='text' name="lms[domain]" value='<?php opt('lms[domain]') ?>' />
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">
+                    Domain Key
+                </th>
+                <td>
+                    <input type='text' name="lms[domain_key]" value='<?php opt('lms[domain_key]') ?>' />
+                </td>
+            </tr>
+
+
+
             <tr value="top">
                 <th scope="row">
                     Logo
@@ -56,7 +78,7 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                     }
                     $option_name = 'logo';
                     $name = "lms[$option_name]";
-                    $src = $options[$option_name];
+                    $src = get_opt($name);
                     ?>
                     <input type="hidden" type="text" name="<?php echo $name?>" value="<?php echo $src?>">
                     <div class="logo">
@@ -107,7 +129,7 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                     Copyright
                 </th>
                 <td>
-                    <textarea name="lms[copyright]"><?php option('lms', 'copyright') ?></textarea>
+                    <textarea name="lms[copyright]"><?php opt('lms[copyright]') ?></textarea>
                     Input copyright.
                 </td>
             </tr>
@@ -119,7 +141,7 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                     HTML HEAD
                 </th>
                 <td>
-                    <textarea name="lms[html_head]"><?php option('lms', 'html_head') ?></textarea>
+                    <textarea name="lms[html_head]"><?php opt('lms[html_head]') ?></textarea>
                     Input Javascript, Style that will be placed right before &lt;/head&gt; tag.<br>
                     It is a good place to put META tags, Javascript, Styles.
                 </td>
@@ -131,7 +153,7 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                     HTML Bootom
                 </th>
                 <td>
-                    <textarea name="lms[html_bottom]"><?php option('lms', 'html_bottom') ?></textarea>
+                    <textarea name="lms[html_bottom]"><?php opt('lms[html_bottom]') ?></textarea>
                     Input Javascript, CSS, HTML codes that will be placed right before &lt;/body&gt; tag.
                 </td>
             </tr>

@@ -14,10 +14,12 @@ if ( ! defined('ABC_LIBRARY') ) {
 else {
     dog('lms');
 }
+
 /**
  * Defines
  */
 define('LMS_OPTION', 'lms');
+define('API_ENDPOINT', 'http://onlineenglish.kr/ajax.php');
 
 /**
  * hooks
@@ -26,25 +28,78 @@ include plugin_dir_path(__FILE__) . 'hook-admin-menu.php';
 include plugin_dir_path(__FILE__) . 'hook-init.php';
 
 
-// 회원 가입 페이지에 양식을 추가
-// first_name 과 같이 기본적으로 제공되는 meta_key 를 사용하면 된다.
-add_action( 'register_form', function() {
-    require ('template/register_form.php');
 
+add_action('begin_registerSubmit', function(){
+    //dog('registerSubmit begins...');
 });
-// 회원 가입 후, 메인페이지로 이동.
-add_filter( 'bbp_user_register_redirect_to', function() {
-    return home_url('/');
+add_action('after_registerSubmit', function($id){
+    dog('lms::after_registerSubmit() : ' . $id);
+    user_insert($id);
 });
-// 회원 가입 버튼을 누르면 회원 정보를 업데이트하는 코드
-add_action( 'user_register', function ( $user_id ) {
-    dog($_POST);
-    dog($user_id);
-    update_user_meta($user_id, 'first_name', $_POST['first_name']);
-    update_user_meta($user_id, 'nickanme', $_POST['nickanme']);
-    update_user_meta($user_id, 'mobile', $_POST['mobile']);
-    update_user_meta($user_id, 'landline', $_POST['landline']);
-    update_user_meta($user_id, 'skype', $_POST['skype']);
-    update_user_meta($user_id, 'kakao', $_POST['kakao']);
-    update_user_meta($user_id, 'address', $_POST['address']);
-}, 10, 1);
+
+
+function ajax_ex_body( $html ) {
+    $body = json_decode( $html['body'], true );
+    return $body;
+}
+function ajax_url($func) {
+    $url = API_ENDPOINT . '?';
+    $url .= 'id=' . user()->user_login;
+    $url .= '&nickname=' . urlencode(user()->nickname);
+    $url .= '&name=' . urlencode(user()->name);
+    $url .= '&email=' . urlencode(user()->user_email);
+    $url .= '&mobile=' . urlencode(user()->mobile);
+    $url .= '&landline=' . urlencode(user()->landline);
+    $url .= '&classid=' . urlencode(user()->skype);
+    $url .= '&domain=' . urlencode( get_opt('lms[domain]'));
+    $url .= '&domain_key=' . urlencode( get_opt('lms[domain_key]'));
+    $url .= '&function=' . $func;
+    return $url;
+}
+
+function user_insert($id) {
+    wp_set_current_user($id);
+    ajax_ex_body( wp_remote_get( ajax_url('user_insert') ) );
+}
+
+
+
+/**
+ * @return array|mixed|object
+ *
+[idx] => 18070
+[id] => Pia
+[name] => Pia Joy Soriano
+[nickname] => Manager Pia
+[classid] => ontue.teacher.135
+[url_youtube] => http://youtu.be/bXM3FP6iL1Q
+[photo] => ./data/teacher/primary_photo_18070
+[teaching_year] => 5
+[birthday] => 19881121
+[greeting] =>
+Hello there!! ..This is Manager Pia.  If you have any problems in the class, I'm willing to help you.
+
+
+[major] => Bachelor of Science in Nursing
+[gender] => F
+ */
+function teacher_list() {
+    $url = API_ENDPOINT . '?';
+    $url .= 'domain=' . urlencode( get_opt('lms[domain]'));
+    $url .= '&domain_key=' . urlencode( get_opt('lms[domain_key]'));
+    $url .= '&function=teacher_list';
+    $cid = 'teacher-list';
+    $response = get_transient( $cid );
+    if( false === $response ) {
+        $response = wp_remote_get( $url );
+        set_transient( $cid, $response, 60 * 60 ); // 1시간 동안 캐시
+    }
+    return ajax_ex_body($response);
+}
+
+function reservation_list() {
+    $url = ajax_url('reservation_list');
+    dog($url);
+    return ajax_ex_body( wp_remote_get( $url ) );
+}
+
