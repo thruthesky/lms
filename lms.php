@@ -32,8 +32,17 @@ include plugin_dir_path(__FILE__) . 'hook-init.php';
 add_action('begin_registerSubmit', function(){
     //dog('registerSubmit begins...');
 });
-add_action('after_registerSubmit', function($id){
+add_action('end_registerSubmit', function($id){
     dog('lms::after_registerSubmit() : ' . $id);
+    user_insert($id);
+});
+
+
+add_action('begin_updateSubmit', function(){
+    //dog('registerSubmit begins...');
+});
+add_action('end_updateSubmit', function($id){
+    dog('lms::end_updateSubmit() : ' . $id);
     user_insert($id);
 });
 
@@ -88,6 +97,7 @@ function teacher_list() {
     $url .= 'domain=' . urlencode( get_opt('lms[domain]'));
     $url .= '&domain_key=' . urlencode( get_opt('lms[domain_key]'));
     $url .= '&function=teacher_list';
+    dog($url);
     $cid = 'teacher-list';
     $response = get_transient( $cid );
     if( false === $response ) {
@@ -102,4 +112,14 @@ function reservation_list() {
     dog($url);
     return ajax_ex_body( wp_remote_get( $url ) );
 }
+function past_list() {
+    $url = ajax_url('past_list');
+    dog($url);
+    return ajax_ex_body( wp_remote_get( $url ) );
+}
 
+
+function kday( $day ) {
+    $days = array('Sun'=>'일', 'Mon'=>'월', 'Tue'=>'화', 'Wed'=>'수', 'Thu'=>'목', 'Fri'=>'금', 'Sat'=>'토');
+    return $days[$day];
+}
