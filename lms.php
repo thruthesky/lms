@@ -26,6 +26,8 @@ define('API_ENDPOINT', 'http://onlineenglish.kr/ajax.php');
  */
 include plugin_dir_path(__FILE__) . 'hook-admin-menu.php';
 include plugin_dir_path(__FILE__) . 'hook-init.php';
+include plugin_dir_path(__FILE__) . 'function.php';
+
 
 
 
@@ -48,6 +50,9 @@ add_action('end_updateSubmit', function($id){
 
 
 function ajax_ex_body( $html ) {
+    if ( is_wp_error( $html ) ) {
+        return ['code'=>-1, 'message'=> get_error_message($html) ];
+    }
     $body = json_decode( $html['body'], true );
     return $body;
 }
@@ -110,7 +115,16 @@ function teacher_list() {
 function reservation_list() {
     $url = ajax_url('reservation_list');
     dog($url);
-    return ajax_ex_body( wp_remote_get( $url ) );
+
+
+    $cid = 'reservation-list';
+    $response = get_transient( $cid );
+    if( false === $response ) {
+        $response = wp_remote_get( $url );
+        set_transient( $cid, $response, 60 * 4 ); // 4 minutes cache
+    }
+    return ajax_ex_body($response);
+
 }
 function past_list() {
     $url = ajax_url('past_list');
@@ -122,4 +136,16 @@ function past_list() {
 function kday( $day ) {
     $days = array('Sun'=>'일', 'Mon'=>'월', 'Tue'=>'화', 'Wed'=>'수', 'Thu'=>'목', 'Fri'=>'금', 'Sat'=>'토');
     return $days[$day];
+}
+
+
+
+
+function warning_e($message) {
+    echo <<<EOH
+    <div class="alert alert-warning" role="alert">
+        $message
+    </div>
+EOH;
+    return null;
 }
