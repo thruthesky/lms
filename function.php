@@ -34,24 +34,9 @@ function draw_calendar( $month, $year, $data ){
 
         /** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! **/
         //$calendar.= str_repeat('<p> </p>',2);
-        $day = $list_day < 10 ? "0$list_day" : $list_day;
-        if ( $data["$year$month$day"] ) {
-            $count = count($data["$year$month$day"]);
-            $calendar .= "<div class='books' count='$count'>";
-            foreach( $data["$year$month$day"] as $book ) {
-                $name = $book['teacher']['mb_nick'];
 
-                $calendar .= "<div class='book'>
-<span class='icon'>$book[icon]</span>
-<span class='name'>$name</span>
-<span class='time'>$book[ktime]</span>
-</div>";
-            }
-            $calendar .= "</div>";
-        }
-        else {
-            $calendar .= "<div class='no-book'></div>";
-        }
+        $day = $list_day < 10 ? "0$list_day" : $list_day;
+        $calendar .= isset( $data["$year$month$day"] ) ? $data["$year$month$day"] : null;
 
         $calendar.= '</td>';
         if($running_day == 6):
