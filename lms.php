@@ -64,7 +64,9 @@ function ajax_url($func) {
     $url .= '&email=' . urlencode(user()->user_email);
     $url .= '&mobile=' . urlencode(user()->mobile);
     $url .= '&landline=' . urlencode(user()->landline);
-    $url .= '&classid=' . urlencode(user()->skype);
+    $classid = user()->skype ;
+    if ( empty($classid) ) $classid = 'solution';
+    $url .= '&classid=' . urlencode( $classid );
     $url .= '&domain=' . urlencode( get_opt('lms[domain]'));
     $url .= '&domain_key=' . urlencode( get_opt('lms[domain_key]'));
     $url .= '&function=' . $func;
@@ -72,8 +74,12 @@ function ajax_url($func) {
 }
 
 function user_insert($id) {
+    dog("lms user_insert($id)");
     wp_set_current_user($id);
-    ajax_ex_body( wp_remote_get( ajax_url('user_insert') ) );
+    $url = ajax_url('user_insert');
+    dog( $url );
+    $body = ajax_ex_body( wp_remote_get( $url ) );
+    dog( $body );
 }
 
 
