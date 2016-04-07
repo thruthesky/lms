@@ -103,7 +103,7 @@ function teacher_list() {
     $url .= '&domain_key=' . urlencode( get_opt('lms[domain_key]'));
     $url .= '&function=teacher_list';
     dog($url);
-    $cid = 'teacher-list';
+    $cid = 'teacher-list-2';
     $response = get_transient( $cid );
     if( false === $response ) {
         $response = wp_remote_get( $url );
@@ -112,12 +112,18 @@ function teacher_list() {
     return ajax_ex_body($response);
 }
 
+function class_list_by_month($Y, $m) {
+    $url = ajax_url('class_list_by_month');
+    $url .= "&Y=$Y&m=$m";
+    dog($url);
+    return ajax_ex_body( wp_remote_get( $url ) );
+}
+
 function reservation_list() {
     $url = ajax_url('reservation_list');
     dog($url);
 
-
-    $cid = 'reservation-list';
+    $cid = 'reservation-list-3';
     $response = get_transient( $cid );
     if( false === $response ) {
         $response = wp_remote_get( $url );
@@ -149,3 +155,4 @@ function warning_e($message) {
 EOH;
     return null;
 }
+

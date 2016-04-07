@@ -1,4 +1,38 @@
 <?php
+
+function prepare_books_by_date( $data ) {
+    $dates = array();
+    $texts = array();
+    foreach( $data as $book ) {
+        $book['icon'] = str_replace('./data/', 'http://onlineenglish.kr/data/', $book['icon']);
+        $dates[ $book['date'] ][] = $book;
+    }
+
+    if ( $dates ) {
+        foreach ( $dates as $date => $books ) {
+            $count = count( $books );
+            $text = "<div class='books' count='$count'>";
+
+            foreach( $books as $book ) {
+                $name = $book['teacher']['mb_nick'];
+                $no = $book['idx'];
+                $minutes = $book['mins'];
+                $text .= "
+                    <div class='book' title='Class No.: $no, Mininutes: $minutes'>
+                        <span class='icon'>$book[icon]</span>
+                        <span class='name'>$name</span>
+                        <span class='time'>$book[ktime]</span>
+                    </div>
+                ";
+            }
+            $text .= "</div>";
+            $texts[ $date ] = $text;
+        }
+    }
+    return $texts;
+}
+
+
 /* draws a calendar */
 function draw_calendar( $month, $year, $data ){
 
