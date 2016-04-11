@@ -16,9 +16,10 @@ function prepare_books_by_date( $data ) {
             foreach( $books as $book ) {
                 $name = $book['teacher']['mb_nick'];
                 $no = $book['idx'];
+                $comment = $book['rate_comment'];
                 $minutes = $book['mins'];
                 $text .= "
-                    <div class='book' title='Class No.: $no, Mininutes: $minutes'>
+                    <div class='book' title='Class No.: $no, Mininutes: $minutes. $comment'>
                         <span class='icon'>$book[icon]</span>
                         <span class='name'>$name</span>
                         <span class='time'>$book[ktime]</span>
