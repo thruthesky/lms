@@ -12,6 +12,9 @@
         width:100%;
         height: 14em;
     }
+    textarea.short {
+        height: 4em;
+    }
 </style>
 
 <?php
@@ -157,6 +160,60 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                     Input Javascript, CSS, HTML codes that will be placed right before &lt;/body&gt; tag.
                 </td>
             </tr>
+
+
+
+            <tr valign="top">
+                <th scope="row">
+                    Banner 1 - Title
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_1_title]"><?php opt('lms[banner_1_title]') ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">
+                    Banner 1 - Content
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_1_content]"><?php opt('lms[banner_1_content]') ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">
+                    Banner 1 - More Button
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_1_more]"><?php opt('lms[banner_1_more]') ?></textarea>
+                </td>
+            </tr>
+
+
+            <tr valign="top">
+                <th scope="row">
+                    Banner 2 - Title
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_2_title]"><?php opt('lms[banner_2_title]') ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">
+                    Banner 2 - Content
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_2_content]"><?php opt('lms[banner_2_content]') ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">
+                    Banner 2 - More Button
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_2_more]"><?php opt('lms[banner_2_more]') ?></textarea>
+                </td>
+            </tr>
+
 
 
 
