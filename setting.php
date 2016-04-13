@@ -215,6 +215,87 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
             </tr>
 
 
+            <tr valign="top">
+                <th scope="row">
+                    Banner 3 - Title
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_3_title]"><?php opt('lms[banner_3_title]') ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">
+                    Banner 3 - Content
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_3_content]"><?php opt('lms[banner_3_content]') ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">
+                    Banner 3 - More Button
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_3_more]"><?php opt('lms[banner_3_more]') ?></textarea>
+                </td>
+            </tr>
+
+
+            <tr valign="top">
+                <th scope="row">
+                    Banner 4 - Title
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_4_title]"><?php opt('lms[banner_4_title]') ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">
+                    Banner 4 - Content
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_4_content]"><?php opt('lms[banner_4_content]') ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">
+                    Banner 4 - More Button
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_4_more]"><?php opt('lms[banner_4_more]') ?></textarea>
+                </td>
+            </tr>
+
+
+            <tr valign="top">
+                <th scope="row">
+                    Banner 5 - Title
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_5_title]"><?php opt('lms[banner_5_title]') ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">
+                    Banner 5 - Content
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_5_content]"><?php opt('lms[banner_5_content]') ?></textarea>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">
+                    Banner 5 - More Button
+                </th>
+                <td>
+                    <textarea class="short" name="lms[banner_5_more]"><?php opt('lms[banner_5_more]') ?></textarea>
+                </td>
+            </tr>
+
+
+
+
+
 
 
         </table>
