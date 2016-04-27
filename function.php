@@ -18,8 +18,9 @@ function prepare_books_by_date( $data ) {
                 $no = $book['idx'];
                 $comment = $book['rate_comment'];
                 $minutes = $book['mins'];
+                $date = $book['date'];
                 $text .= "
-                    <div class='book' title='Class No.: $no, Mininutes: $minutes. $comment'>
+                    <div class='book' date='$date' title='<h3>$name</h3>' data-content='<i>Class No.: $no</i><br>Minutes: $minutes. $comment'>
                         <span class='icon'>$book[icon]</span>
                         <span class='name'>$name</span>
                         <span class='time'>$book[ktime]</span>
