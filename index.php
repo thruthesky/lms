@@ -1,18 +1,18 @@
 <style>
-    .siteapi-index iframe {
+    .lms iframe {
         width:100%;
         min-height:40960px;
     }
 </style>
-<div class="wrap plugin-lms-ndex">
+<div class="wrap lms plugin-lms-ndex">
 
-    <h2>LMS 0.0.1</h2>
+    <h2>CenterX9 LMS 매뉴얼</h2>
 
     <div>
-        LMS Manual
-        [ <a href="https://docs.google.com/document/d/1QWzjPc6p-49-tFtlejJmyGrrln5B5u_GBPie7M_DTRM/pub" target=_blank>Open in new window.</a> ]
+        
+        [ <a href="https://docs.google.com/document/d/1DaQoUXdn51u0eS7zlT6Gw_Do9rTOoaFNqZa3pDowzTI/pub" target=_blank>전체화면으로 보기</a> ]
     </div>
 
-    <iframe src="https://docs.google.com/document/d/1QWzjPc6p-49-tFtlejJmyGrrln5B5u_GBPie7M_DTRM/pub?embedded=true"></iframe>
+    <iframe src="https://docs.google.com/document/d/1DaQoUXdn51u0eS7zlT6Gw_Do9rTOoaFNqZa3pDowzTI/pub?embedded=true"></iframe>
 
 </div>
