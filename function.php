@@ -19,8 +19,24 @@ function prepare_books_by_date( $data ) {
                 $comment = $book['rate_comment'];
                 $minutes = $book['mins'];
                 $date = $book['date'];
+                $grammar = $book['rate_grammar'];
+                $vocabulary = $book['rate_vocabulary'];
+                $expression = $book['rate_expression'];
+                $pronounciation = $book['rate_pronounciation'];
+                $speed = $book['rate_speed'];
                 $text .= "
-                    <div class='book' date='$date' title='<h3>$name</h3>' data-content='<i>Class No.: $no</i><br>Minutes: $minutes. $comment'>
+                    <div class='book' date='$date' title='<div class=\"text\">Teachers Name: $name</div>
+                    <div class=\"text\">Class No.: $no</div>
+                    <div class=\"text\">Data: $date</div>'
+                     data-content='
+                    <div class=\"text\">Evaluation</div>
+                    <div class=\"text rate\">Grammar: $grammar</div>
+                    <div class=\"text rate\">Proficiency: $speed</div>
+                    <div class=\"text rate\">Vocabulary: $vocabulary</div>
+                    <div class=\"text rate\">Pronunciation: $pronounciation</div>
+                    <div class=\"text rate\">Expression: $expression</div>
+                    <div class=\"text comment\">Teachers Comments:</div>
+                    <div class=\"text\">$comment</div>'>
                         <span class='icon'>$book[icon]</span>
                         <span class='name'>$name</span>
                         <span class='time'>$book[ktime]</span>
