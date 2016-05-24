@@ -17,6 +17,39 @@
     }
 </style>
 
+
+<script>
+    jQuery(function($) {
+        $('.delete-button').click(function(){
+            var name = $(this).attr('target-name');
+            var $target = $('.photo-upload-button[target-name="'+name+'"]');
+            $target.find('input').val('');
+            $target.find('img').attr('src', '');
+        });
+    });
+
+    jQuery(document).ready(function($) {
+        $('.photo-upload-button').click(function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            var custom_uploader = wp.media({
+                    title: '사이트 사진 선택',
+                    button: {
+                        text: '선택하기'
+                    },
+                    multiple: false
+                })
+                .on('select', function() {
+                    var attachment = custom_uploader.state().get('selection').first().toJSON();
+                    $this.find('input').val(attachment.url);
+                    $this.find('img').attr('src', attachment.url);
+                })
+                .open();
+        });
+    });
+</script>
+
+
 <?php
 if ( ! isset( $_REQUEST['settings-updated'] ) )
     $_REQUEST['settings-updated'] = false;
@@ -65,9 +98,12 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
 
 
 
-            <tr value="top">
+
+
+
+            <tr valign="top">
                 <th scope="row">
-                    Logo
+                    <?php _e("Logo on top", 'lms')?>
                 </th>
                 <td>
                     <?php
@@ -79,52 +115,78 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                         wp_enqueue_script('media-upload');
                         wp_enqueue_script('thickbox');
                     }
-                    $option_name = 'logo';
-                    $name = "lms[$option_name]";
-                    $src = get_opt($name);
+                    $option_name = 'logo_on_top';
+                    $name = 'lms' . "[$option_name]";
+                    $src = get_opt( $name );
                     ?>
-                    <input type="hidden" type="text" name="<?php echo $name?>" value="<?php echo $src?>">
-                    <div class="logo">
-                        <div class="upload-button">
+
+                    <div class="photo-upload-button" target-name="<?php echo $name?>">
+                        <input type="hidden" type="text" name="<?php echo $name?>" value="<?php echo $src?>">
+                        <div>
                             <div class="photo">
-                                <img src="<?php echo $src?>"/>
-                            </div>
-                            <div class="button logo-button">
-                                Upload LOGO ( width: 400px, height: 200px )
-                            </div>
-                            <div class="button delete-button">
-                                Delete
+                                <img src="<?php echo $src?>"/></div>
+                            <div class="button">
+                                사이트 대표 아이콘(사진) 등록 하기 ( jpg 또는 png 파일. 너비 512 픽셀, 높이 512 픽셀 )
                             </div>
                         </div>
                     </div>
-                    <script>
-                        jQuery(document).ready(function($) {
-                            $('.upload-button .photo, .logo-button').click(function(e) {
-                                e.preventDefault();
-                                var custom_uploader = wp.media({
-                                        title: 'Choose Logo',
-                                        button: {
-                                            text: 'Select Logo'
-                                        },
-                                        multiple: false
-                                    })
-                                    .on('select', function() {
-                                        var attachment = custom_uploader.state().get('selection').first().toJSON();
-                                        $('input[name="<?php echo $name?>"]').val(attachment.url);
-                                        $('.photo img').attr('src', attachment.url);
-                                    })
-                                    .open();
-                            });
-                            $('.delete-button').click(function(e) {
-                                e.preventDefault();
-                                $('.logo .photo img').prop('src', '');
-                                $('[name="<?php echo $name?>"]').val('');
-                            });
-                        });
-                    </script>
+
+                    <div class="button delete-button" target-name="<?php echo $name?>">
+                        사진 삭제
+                    </div>
                 </td>
             </tr>
 
+
+
+
+            <tr valign="top">
+                <th scope="row">
+                    <?php _e("Logo on bottom", 'lms')?>
+                </th>
+                <td>
+                    <?php
+                    $option_name = 'logo_on_bottom';
+                    $name = 'lms' . "[$option_name]";
+                    $src = get_opt( $name );
+                    ?>
+                    <div class="photo-upload-button" target-name="<?php echo $name?>">
+                        <input type="hidden" type="text" name="<?php echo $name?>" value="<?php echo $src?>">
+                        <div>
+                            <div class="photo">
+                                <img src="<?php echo $src?>"/></div>
+                            <div class="button">
+                                사이트 상단 헤더(타이틀 이미지) ( jpg 또는 png 파일. 너비 1600 픽셀, 높이 200 ~ 400 픽셀 )
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button delete-button" target-name="<?php echo $name?>">Delete photo</div>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">
+                    <?php _e("Extra Image", 'lms')?>
+                </th>
+                <td>
+                    <?php
+                    $option_name = 'extra_image';
+                    $name = 'lms' . "[$option_name]";
+                    $src = get_opt( $name );
+                    ?>
+                    <div class="photo-upload-button" target-name="<?php echo $name?>">
+                        <input type="hidden" type="text" name="<?php echo $name?>" value="<?php echo $src?>">
+                        <div>
+                            <div class="photo">
+                                <img src="<?php echo $src?>"/></div>
+                            <div class="button">
+                                In case of later use.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button delete-button" target-name="<?php echo $name?>">Delete photo</div>
+                </td>
+            </tr>
 
 
             <tr valign="top">
@@ -161,136 +223,6 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                 </td>
             </tr>
 
-
-
-            <tr valign="top">
-                <th scope="row">
-                    Banner 1 - Title
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_1_title]"><?php opt('lms[banner_1_title]') ?></textarea>
-                </td>
-            </tr>
-            <tr valign="top">
-                <th scope="row">
-                    Banner 1 - Content
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_1_content]"><?php opt('lms[banner_1_content]') ?></textarea>
-                </td>
-            </tr>
-            <tr valign="top">
-                <th scope="row">
-                    Banner 1 - More Button
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_1_more]"><?php opt('lms[banner_1_more]') ?></textarea>
-                </td>
-            </tr>
-
-
-            <tr valign="top">
-                <th scope="row">
-                    Banner 2 - Title
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_2_title]"><?php opt('lms[banner_2_title]') ?></textarea>
-                </td>
-            </tr>
-            <tr valign="top">
-                <th scope="row">
-                    Banner 2 - Content
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_2_content]"><?php opt('lms[banner_2_content]') ?></textarea>
-                </td>
-            </tr>
-            <tr valign="top">
-                <th scope="row">
-                    Banner 2 - More Button
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_2_more]"><?php opt('lms[banner_2_more]') ?></textarea>
-                </td>
-            </tr>
-
-
-            <tr valign="top">
-                <th scope="row">
-                    Banner 3 - Title
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_3_title]"><?php opt('lms[banner_3_title]') ?></textarea>
-                </td>
-            </tr>
-            <tr valign="top">
-                <th scope="row">
-                    Banner 3 - Content
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_3_content]"><?php opt('lms[banner_3_content]') ?></textarea>
-                </td>
-            </tr>
-            <tr valign="top">
-                <th scope="row">
-                    Banner 3 - More Button
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_3_more]"><?php opt('lms[banner_3_more]') ?></textarea>
-                </td>
-            </tr>
-
-
-            <tr valign="top">
-                <th scope="row">
-                    Banner 4 - Title
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_4_title]"><?php opt('lms[banner_4_title]') ?></textarea>
-                </td>
-            </tr>
-            <tr valign="top">
-                <th scope="row">
-                    Banner 4 - Content
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_4_content]"><?php opt('lms[banner_4_content]') ?></textarea>
-                </td>
-            </tr>
-            <tr valign="top">
-                <th scope="row">
-                    Banner 4 - More Button
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_4_more]"><?php opt('lms[banner_4_more]') ?></textarea>
-                </td>
-            </tr>
-
-
-            <tr valign="top">
-                <th scope="row">
-                    Banner 5 - Title
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_5_title]"><?php opt('lms[banner_5_title]') ?></textarea>
-                </td>
-            </tr>
-            <tr valign="top">
-                <th scope="row">
-                    Banner 5 - Content
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_5_content]"><?php opt('lms[banner_5_content]') ?></textarea>
-                </td>
-            </tr>
-            <tr valign="top">
-                <th scope="row">
-                    Banner 5 - More Button
-                </th>
-                <td>
-                    <textarea class="short" name="lms[banner_5_more]"><?php opt('lms[banner_5_more]') ?></textarea>
-                </td>
-            </tr>
 
 
 
