@@ -121,7 +121,7 @@ function teacher_list() {
 function class_list_by_month($Y, $m) {
     $url = ajax_url('class_list_by_month');
     $url .= "&Y=$Y&m=$m";
-    dog($url);
+    //di($url);
     return ajax_ex_body( wp_remote_get( $url ) );
 }
 

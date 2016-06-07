@@ -3,10 +3,12 @@
 function prepare_books_by_date( $data ) {
     $dates = array();
     $texts = array();
+
     foreach( $data as $book ) {
         $book['icon'] = str_replace('./data/', 'http://onlineenglish.kr/data/', $book['icon']);
         $dates[ $book['date'] ][] = $book;
     }
+
 
     if ( $dates ) {
         foreach ( $dates as $date => $books ) {
@@ -23,6 +25,7 @@ function prepare_books_by_date( $data ) {
                 $vocabulary = $book['rate_vocabulary'];
                 $expression = $book['rate_expression'];
                 $pronounciation = $book['rate_pronounciation'];
+                $textbook = esc_html($book['book']);
                 $speed = $book['rate_speed'];
                 $text .= "
                     <div class='book' date='$date' title='<div class=\"text\">Teachers Name: $name</div>
@@ -34,7 +37,11 @@ function prepare_books_by_date( $data ) {
                     <div class=\"text rate\">Proficiency: $speed</div>
                     <div class=\"text rate\">Vocabulary: $vocabulary</div>
                     <div class=\"text rate\">Pronunciation: $pronounciation</div>
+
                     <div class=\"text rate\">Expression: $expression</div>
+
+                    <div class=\"text book\">Book: $textbook</div>
+
                     <div class=\"text comment\">Teachers Comments:</div>
                     <div class=\"text\">$comment</div>'>
                         <span class='icon'>$book[icon]</span>
