@@ -78,6 +78,17 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                 </td>
             </tr>
 
+
+            <tr valign="top">
+                <th scope="row">
+                    Phone Number
+                </th>
+                <td>
+                    <input type='text' name="lms[phone_number]" value='<?php opt('lms[phone_number]') ?>' />
+                </td>
+            </tr>
+
+
             <tr valign="top">
                 <th scope="row">
                     Company Domain

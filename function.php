@@ -125,3 +125,27 @@ function draw_calendar( $month, $year, $data ){
     /* all done, return result */
     return $calendar;
 }
+
+/* draws a calendar list view    */
+function draw_calendar_listview( $month, $year, $data ){
+    $listview = '<div class="listview calendar">';
+
+    /* days and weeks vars now ... */
+    $days_in_month = date('t',mktime(0,0,0,$month,1,$year));
+    $month_digit = date('m', mktime( 0, 0, 0, $month, 1, $year));
+
+    /* list days.... */
+    for($list_day = 1; $list_day <= $days_in_month; $list_day++):
+        $day = $list_day < 10 ? "0$list_day" : $list_day;
+
+        $listview.= '<div class="calendar-day">';
+        /* add in the day number */
+        $day_word = date('D', mktime( 0, 0, 0, $month, $list_day, $year));
+        $listview.= '<div class="day-number">'.$month_digit.'/'.$list_day.'<span>'.$day_word.'</span></div>';
+        $listview.= isset( $data["$year$month$day"] ) ? $data["$year$month$day"] : null;
+        $listview.= '</div>';
+    endfor;
+
+    $listview .= '</div>';
+    return $listview;
+}
