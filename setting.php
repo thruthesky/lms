@@ -78,6 +78,22 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                 </td>
             </tr>
 
+            <tr valign="top">
+                <th scope="row">Company Address</th>
+                <td><input type='text' name="lms[company_address]" value='<?php opt('lms[company_address]') ?>' /></td>
+            </tr>
+
+
+            <tr valign="top">
+                <th scope="row">Manager Name</th>
+                <td><input type='text' name="lms[manager_name]" value='<?php opt('lms[manager_name]') ?>' /></td>
+            </tr>
+
+
+            <tr valign="top">
+                <th scope="row">Email</th>
+                <td><input type='text' name="lms[email]" value='<?php opt('lms[email]') ?>' /></td>
+            </tr>
 
             <tr valign="top">
                 <th scope="row">
@@ -87,6 +103,28 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                     <input type='text' name="lms[phone_number]" value='<?php opt('lms[phone_number]') ?>' />
                 </td>
             </tr>
+
+
+            <tr valign="top">
+                <th scope="row">Kakao Talk ID</th>
+                <td>
+                    <input type='text' name="lms[kakaotalk]" value='<?php opt('lms[kakaotalk]') ?>' />
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Skype ID</th>
+                <td><input type='text' name="lms[skype]" value='<?php opt('lms[skype]') ?>' /></td>
+            </tr>
+
+
+
+
+            <tr valign="top">
+                <th scope="row">Bank Information</th>
+                <td><input type='text' name="lms[bank]" value='<?php opt('lms[bank]') ?>' /></td>
+            </tr>
+
 
 
             <tr valign="top">
