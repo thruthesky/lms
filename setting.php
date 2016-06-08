@@ -133,6 +133,7 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                 </th>
                 <td>
                     <input type='text' name="lms[domain]" value='<?php opt('lms[domain]') ?>' />
+			<a href='http://<?php opt('lms[domain]')?>' target='_blank'>Admin Page</a>
                 </td>
             </tr>
 
