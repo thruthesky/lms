@@ -35,11 +35,10 @@ include __LMS_PATH__ . 'hook-lms.php';
 include __LMS_PATH__ . 'function.php';
 
 include __LMS_PATH__ . 'action.php';
-include __LMS_PATH__ . 'install.php';
 
 
-include __LMS_PATH__ . 'payment-gateway/function.php';
-include __LMS_PATH__ . 'payment-gateway/config.php';
+
+include __LMS_PATH__ . 'pg/load.php';
 
 
 include __LMS_PATH__ . 'main-server/action.php';

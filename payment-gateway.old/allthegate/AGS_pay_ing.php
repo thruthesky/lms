@@ -22,7 +22,7 @@ dog( __FILE__ );
 	* [1] 라이브러리(AGSLib.php)를 인클루드 합니다.
 	*
 	****************************************************************************/
-	require (__LMS_PATH__."payment-gateway/allthegate/lib/AGSLib.php");
+	require (ALLTHEGATE_DIR . "lib/AGSLib.php");
 
 
 	/****************************************************************************
