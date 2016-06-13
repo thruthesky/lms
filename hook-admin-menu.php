@@ -29,4 +29,14 @@ add_action('admin_menu', function () {
         'lms/setting.php',
         ''
     );
+
+    add_submenu_page(
+        'lms/index.php',
+        __('LMS Payments', 'lms'),
+        __('Payments', 'lms'),
+        'manage_options',
+        'lms/payment.php',
+        ''
+    );
+
 } );

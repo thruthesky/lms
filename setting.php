@@ -59,9 +59,19 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
 
     <h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
+
+
+    <div>
+        <a href="<?php echo home_url()?>/category/qna/feed" target="_blank">RSS Feed</a>
+    </div>
+
     <?php if ( false !== $_REQUEST['settings-updated'] ) : ?>
         <div class="updated fade"><p><strong><?php _e( 'Settings saved', 'lms' ); ?></strong></p></div>
     <?php endif; ?>
+
+
+
+
 
     <form method="post" action="options.php">
         <?php settings_fields( 'lms' ); ?>
@@ -137,16 +147,43 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                 </td>
             </tr>
 
+
+
+
             <tr valign="top">
-                <th scope="row">
-                    Domain Key
-                </th>
-                <td>
-                    <input type='text' name="lms[domain_key]" value='<?php opt('lms[domain_key]') ?>' />
-                </td>
+                <th scope="row">Domain Key</th>
+                <td><input type='text' name="lms[domain_key]" value='<?php opt('lms[domain_key]') ?>' /></td>
             </tr>
 
+            <tr valign="top">
+                <th scope="row">올더게이트 ID</th>
+                <td><input type='text' name="lms[allthegate_id]" value='<?php opt('lms[allthegate_id]') ?>' /></td>
+            </tr>
 
+            <tr valign="top">
+                <th scope="row">올더게이트 CP ID</th>
+                <td><input type='text' name="lms[allthegate_cp_id]" value='<?php opt('lms[allthegate_cp_id]') ?>' /></td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">올더게이트 CP PWD</th>
+                <td><input type='text' name="lms[allthegate_cp_pwd]" value='<?php opt('lms[allthegate_cp_pwd]') ?>' /></td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">올더게이트 CP CODE</th>
+                <td><input type='text' name="lms[allthegate_cp_code]" value='<?php opt('lms[allthegate_cp_code]') ?>' /></td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">올더게이트 SUB CP ID</th>
+                <td><input type='text' name="lms[allthegate_sub_cp_id]" value='<?php opt('lms[allthegate_sub_cp_id]') ?>' /></td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">상품 이름</th>
+                <td><input type='text' name="lms[allthegate_item_name]" value='<?php opt('lms[allthegate_item_name]') ?>' /></td>
+            </tr>
 
 
 
