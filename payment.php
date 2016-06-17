@@ -7,7 +7,8 @@
     global $wpdb;
     $table = $wpdb->prefix . 'payment';
     $rows = $wpdb->get_results("SELECT * FROM $table WHERE result='Y' ORDER BY id DESC");
-di($rows);
+
+//di($rows);
     ?>
 
     <table class="wp-list-table widefat fixed striped posts">
@@ -27,14 +28,14 @@ di($rows);
 
         <?php foreach ( $rows as $row ) { ?>
         <tr>
-            <td scope="col" id="id" class="manage-column"><?php echo $row['id']?></td>
-            <td scope="col" id="user_account" class="manage-column"><?php echo $row['paygate_account']?></td>
-            <td scope="col" id="method" class="manage-column"><?php echo $row['method']?></td>
-            <td scope="col" id="currency" class="manage-column"><?php echo $row['currency']?></td>
-            <td scope="col" id="Amount" class="manage-column"><?php echo $row['amount']?></td>
-            <td scope="col" id="stamp_create" class="manage-column sortable desc"><?php echo $row['stamp_create']?></td>
-            <td scope="col" id="date" class="manage-column"><?php echo $row['stamp_finish']?></td>
-            <td scope="col" id="result" class="manage-column"><?php echo $row['result']?></td>
+            <td scope="col" id="id" class="manage-column"><?php echo $row->id ?></td>
+            <td scope="col" id="user_account" class="manage-column"><?php echo $row->paygate_account ?></td>
+            <td scope="col" id="method" class="manage-column"><?php echo $row->method ?></td>
+            <td scope="col" id="currency" class="manage-column"><?php echo $row->currency ?></td>
+            <td scope="col" id="Amount" class="manage-column"><?php echo $row->amount ?></td>
+            <td scope="col" id="stamp_create" class="manage-column"><?php echo $row->stamp_create ?></td>
+            <td scope="col" id="date" class="manage-column"><?php echo $row->stamp_finish ?></td>
+            <td scope="col" id="result" class="manage-column"><?php echo $row->result ?></td>
         </tr>
         <?php } ?>
 
