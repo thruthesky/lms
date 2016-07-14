@@ -185,6 +185,22 @@ if ( ! isset( $_REQUEST['settings-updated'] ) )
                 <td><input type='text' name="lms[allthegate_item_name]" value='<?php opt('lms[allthegate_item_name]') ?>' /></td>
             </tr>
 
+            <tr valign="top">
+                <th scope="row">Facebook App ID</th>
+                <td><input type='text' name="lms[facebook_app_id]" value='<?php opt('lms[facebook_app_id]') ?>' /></td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Facebook API Version</th>
+                <td><input type='text' name="lms[facebook_api_version]" value='<?php opt('lms[facebook_api_version]') ?>' /></td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">App Secret</th>
+                <td><input type='text' name="lms[facebook_app_secret]" value='<?php opt('lms[facebook_app_secret]') ?>' /></td>
+            </tr>
+
+
 
 
 
