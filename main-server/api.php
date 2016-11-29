@@ -159,7 +159,7 @@ function prepare_books_by_date( $data, &$no_of_absence ) {
                     <div class=\"text\">$comment</div>'
                     ";
                 }
-                //$text .= ">";
+                $text .= ">";
                 $text .= "
                         <span class='icon'>$book[icon]</span>
                         <span class='name'>$name</span>
