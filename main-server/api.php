@@ -143,6 +143,7 @@ function prepare_books_by_date( $data, &$no_of_absence ) {
                     <div class=\"text\">Class No.: $no</div>
                     <div class=\"text\">Data: $date</div>'
                     ";
+                $comments = str_replace("'",'&#39;' , $comment );
                 if ( empty($absence) ) {
                     $text .= "
                      data-content='
@@ -156,7 +157,7 @@ function prepare_books_by_date( $data, &$no_of_absence ) {
                     <div class=\"text book\">Book: $textbook</div>
 
                     <div class=\"text comment\">Teachers Comment&#39;s:</div>
-                    <div class=\"text\">str_replace(\"'\",\"&#39;\",$comment)</div>'
+                    <div class=\"text\">$comments</div>'
                     ";
                 }
                 $text .= ">";
