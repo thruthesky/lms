@@ -156,7 +156,7 @@ function prepare_books_by_date( $data, &$no_of_absence ) {
                     <div class=\"text book\">Book: $textbook</div>
 
                     <div class=\"text comment\">Teachers Comment&#39;s:</div>
-                    <div class=\"text\">htmlentities($comment, ENT_QUOTES)</div>'
+                    <div class=\"text\">str_replace(\"'\",\"&#39;\",$comment)</div>'
                     ";
                 }
                 $text .= ">";
