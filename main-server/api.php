@@ -139,7 +139,7 @@ function prepare_books_by_date( $data, &$no_of_absence ) {
                 $speed = $book['rate_speed'];
                 // Updated by Mr. Song on June 8, 2106.
                 $text .= "
-                    <div class='book$absence' date='$date' title='<div class=\"text\">Teachers Name: $name</div>
+                    <div class='book$absence' date='$date' title='<div class=\"text\">Teacher\'s Name: $name</div>
                     <div class=\"text\">Class No.: $no</div>
                     <div class=\"text\">Data: $date</div>'
                     ";
@@ -155,8 +155,8 @@ function prepare_books_by_date( $data, &$no_of_absence ) {
 
                     <div class=\"text book\">Book: $textbook</div>
 
-                    <div class=\"text comment\">Teachers Comments:</div>
-                    <div class=\"text\">$comment</div>'
+                    <div class=\"text comment\">Teachers Comment\'s:</div>
+                    <div class=\"text\">htmlentities($comment, ENT_QUOTES)</div>'
                     ";
                 }
                 $text .= ">";
