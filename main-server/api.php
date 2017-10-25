@@ -139,23 +139,28 @@ function prepare_books_by_date( $data, &$no_of_absence ) {
                 $speed = $book['rate_speed'];
                 // Updated by Mr. Song on June 8, 2106.
                 $text .= "
-                    <div class='book$absence' date='$date' title='<div class=\"text\">Teachers Name: $name</div>
+                    <div class='book$absence' date='$date' title='<div class=\"text\">Teacher&#39;s Name: $name</div>
                     <div class=\"text\">Class No.: $no</div>
-                    <div class=\"text\">Data: $date</div>'
+                    <div class=\"text\">Date: $date</div>'
                     ";
+                $comment = str_replace("'",'&#39;' , $comment );
+                $comment = str_replace('"','&#34;' , $comment );
+
+                /**
+                 * remove from data-content
+                <div class=\"text\">Evaluation</div>
+                <div class=\"text rate\">Grammar: $grammar</div>
+                <div class=\"text rate\">Proficiency: $speed</div>
+                <div class=\"text rate\">Vocabulary: $vocabulary</div>
+                <div class=\"text rate\">Pronunciation: $pronounciation</div>
+                <div class=\"text rate\">Expression: $expression</div>
+                */
+
                 if ( empty($absence) ) {
                     $text .= "
                      data-content='
-                    <div class=\"text\">Evaluation</div>
-                    <div class=\"text rate\">Grammar: $grammar</div>
-                    <div class=\"text rate\">Proficiency: $speed</div>
-                    <div class=\"text rate\">Vocabulary: $vocabulary</div>
-                    <div class=\"text rate\">Pronunciation: $pronounciation</div>
-                    <div class=\"text rate\">Expression: $expression</div>
-
                     <div class=\"text book\">Book: $textbook</div>
-
-                    <div class=\"text comment\">Teachers Comments:</div>
+                    <div class=\"text comment\">Teacher&#39;s Comments:</div>
                     <div class=\"text\">$comment</div>'
                     ";
                 }
