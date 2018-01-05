@@ -17,7 +17,7 @@ function ajax_url($func) {
     $url .= '&mobile=' . urlencode(user()->mobile);
     $url .= '&landline=' . urlencode(user()->landline);
     $classid = user()->skype ;
-    if ( empty($classid) ) $classid = 've';
+    if ( empty($classid) ) $classid = 'solution';
     $url .= '&classid=' . urlencode( $classid );
     $url .= '&domain=' . urlencode( get_opt('lms[domain]'));
     $url .= '&domain_key=' . urlencode( get_opt('lms[domain_key]'));
